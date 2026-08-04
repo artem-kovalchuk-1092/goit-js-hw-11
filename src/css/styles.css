@@ -10,12 +10,14 @@
 
 :root {
   --accent: #4e75ff;
+  --accent-hover: #6c8cff;
   --text: #2e2f42;
   --border: #808080;
 }
 
 body {
-  background-color: #f8f8f8;
+  font-family: 'Montserrat', sans-serif;
+  background-color: #fff;
   color: var(--text);
   align-items: center;
   padding: 36px 16px 60px;
@@ -37,12 +39,19 @@ body {
   width: 272px;
   height: 40px;
   padding: 8px 16px;
-  border: 1px solid #808080;
+  border: 1px solid var(--border);
   border-radius: 4px;
   outline: none;
+  font-family: inherit;
   font-size: 16px;
-  line-height: 1.2;
+  font-weight: 400;
+  line-height: 1.5;
   color: var(--text);
+  background-color: #fff;
+}
+
+.form input::placeholder {
+  color: #808080;
 }
 
 .form input:hover {
@@ -55,41 +64,46 @@ body {
 
 .form button {
   box-sizing: border-box;
+  min-width: 91px;
   height: 40px;
   padding: 8px 16px;
   border: none;
   border-radius: 8px;
   background-color: var(--accent);
   color: #fff;
+  font-family: inherit;
   font-size: 16px;
   font-weight: 500;
-  line-height: 1.2;
+  line-height: 1.5;
+  cursor: pointer;
 }
 
-.form button:hover {
-  background-color: #6c8cff;
+.form button:hover,
+.form button:focus {
+  background-color: var(--accent-hover);
 }
 
 .gallery {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(3, 360px);
   gap: 24px;
-  width: 100%;
-  max-width: 1128px;
+  justify-content: center;
   margin: 0 auto;
 }
 
 .gallery-item {
-  border: 1px solid #808080;
+  width: 360px;
+  border: 1px solid var(--border);
   background-color: #fff;
 }
 
 .gallery-link {
   display: block;
+  line-height: 0;
 }
 
 .gallery-image {
-  width: 100%;
+  width: 360px;
   height: 200px;
   object-fit: cover;
 }
@@ -97,18 +111,21 @@ body {
 .info {
   display: flex;
   justify-content: space-around;
-  padding: 8px 0;
-  border-top: 1px solid #808080;
+  align-items: center;
+  padding: 4px 0;
 }
 
 .info-item {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 4px;
+  font-family: 'Montserrat', sans-serif;
   font-size: 12px;
-  line-height: 1.3;
+  font-weight: 400;
+  line-height: 1.33333;
+  letter-spacing: 0.04em;
   text-align: center;
+  color: var(--text);
 }
 
 .info-item b {
@@ -145,10 +162,15 @@ body {
   }
 }
 
+@media (max-width: 1140px) {
+  .gallery {
+    grid-template-columns: repeat(2, 360px);
+  }
+}
+
 @media (max-width: 768px) {
   .gallery {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 16px;
+    grid-template-columns: 360px;
   }
 
   .form {
@@ -156,13 +178,19 @@ body {
     align-items: stretch;
   }
 
-  .form input {
+  .form input,
+  .form button {
     width: 100%;
   }
 }
 
-@media (max-width: 480px) {
+@media (max-width: 400px) {
   .gallery {
     grid-template-columns: 1fr;
+  }
+
+  .gallery-item,
+  .gallery-image {
+    width: 100%;
   }
 }
